@@ -11,18 +11,18 @@ The following script should be taken as an input: https://github.com/realpython/
 * String.format() should be replaced with the Python3 f-String (line 14)
 
 ```
-import os
-import glob
-
-os.chdir("/Users/mikeherman/repos/bugs/se-platform/se/core/permissions")
-for file in glob.glob("*.json"):
-    file_name = os.path.splitext(file)[0]
-    extension = os.path.splitext(file)[1]
-    new_file_name = file_name[:-6] + extension
-    try:
-        os.rename(file, new_file_name)
-    except OSError as e:
-        print(e)
-    else:
-        print("Renamed {} to {}".format(file, new_file_name))
+1 import os
+2 import glob
+3
+4 os.chdir("/Users/mikeherman/repos/bugs/se-platform/se/core/permissions")
+5 for file in glob.glob("*.json"):
+6    file_name = os.path.splitext(file)[0]
+7    extension = os.path.splitext(file)[1]
+8    new_file_name = file_name[:-6] + extension
+9    try:
+10        os.rename(file, new_file_name)
+11    except OSError as e:
+12        print(e)
+13    else:
+14        print("Renamed {} to {}".format(file, new_file_name))
 ```
