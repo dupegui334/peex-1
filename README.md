@@ -26,3 +26,11 @@ The following script should be taken as an input: https://github.com/realpython/
 13    else:
 14        print("Renamed {} to {}".format(file, new_file_name))
 ```
+
+### Example: Check in ./test-folder and slice 1 character of all .json files located there:
+```
+❯ python3 04_rename_with_slice.py ./test-folder json 1
+Current path ~/peex-1/scripts/test-folder
+Renamed file.json to fil.json
+Renamed file2.json to file.json
+```
