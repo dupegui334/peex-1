@@ -1,7 +1,8 @@
-# peex-1
+# PeEx-1
 Repo of exercises and nebo tasks made for PeEx evaluation
-
-## 1. Improve / Fix script
+---
+## 1. Scripting: 
+### Improve / Fix script
 
 The following script should be taken as an input: https://github.com/realpython/python-scripts/blob/master/scripts/04_rename_with_slice.py. This script renames all files of a specific type in a given folder by removing the last 6 symbols of the existing filename. In this script, the following steps should be taken to improve/fix it:
 
@@ -27,10 +28,19 @@ The following script should be taken as an input: https://github.com/realpython/
 14        print("Renamed {} to {}".format(file, new_file_name))
 ```
 
-### Example: Check in ./test-folder and slice 1 character of all .json files located there:
+#### Example: Check in ./test-folder and slice 1 character of all .json files located there:
 ```
 ❯ python3 04_rename_with_slice.py ./test-folder json 1
 Current path ~/peex-1/scripts/test-folder
 Renamed file.json to fil.json
 Renamed file2.json to file.json
 ```
+
+---
+## 2. Cloud compute:Provision virtual machine with predefined types and images
+* a dedicated VPC is created with a public subnet
+* a security group restricting access to the created Amazon EC2 instance from your local workstation over SSH protocol
+* a key pair is generated for accessing your Amazon EC2 instance with SSH
+* an EC2 instance should be provisioned of type t2.micro
+* the latest Ubuntu AMI used to instantiate the instance
+* established SSH connection from your local workstation to the created Amazon EC2 instance
