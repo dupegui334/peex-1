@@ -66,15 +66,15 @@ resource "aws_security_group" "vm-sg-priv" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/17"]
+    cidr_blocks = ["10.0.0.0/17"] #Allow public VM in public subnet of the VPC to ssh it.
   }
 
   ingress {
-    description = "ICMP"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/17"]
+    description = "ICMP" #All ICMP
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["10.0.0.0/17"] #Allow public VM in public subnet of the VPC to ping it.
   }
 
   egress {
