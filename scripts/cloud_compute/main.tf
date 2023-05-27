@@ -1,5 +1,5 @@
-# Main file that imports the networking modules
-# and the compute resources for the exercise.
+# Main file that imports the networking and
+# compute resources in AWS for the exercise.
 module "networking" {
   source                   = "./networking"
   vpc_cidr_block           = var.vpc_cidr_block
