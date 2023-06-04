@@ -33,7 +33,7 @@ resource "aws_iam_user" "softserve-user" {
     }
 }
 
-resource "aws_iam_role" "ssm-ec2-role" {
+resource "aws_iam_role" "ssm-ec2-role" { #Role created for ec2 instance with no policy defined
     name = "SSMFullAccess"
     assume_role_policy = jsonencode({
         Version = "2012-10-17"
@@ -49,12 +49,12 @@ resource "aws_iam_role" "ssm-ec2-role" {
     })
 }
 
-resource "aws_iam_role_policy_attachment" "ssm_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "ssm_policy_attachment" { #Attach SSM full access policy to the role created
   role       = aws_iam_role.ssm-ec2-role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
 
-resource "aws_iam_instance_profile" "ssm-instance-role" {
+resource "aws_iam_instance_profile" "ssm-instance-role" { #Resource used to attach role to ec2 instance
   name  = "ssm-instance-role"
   role = aws_iam_role.ssm-ec2-role.name
 }
