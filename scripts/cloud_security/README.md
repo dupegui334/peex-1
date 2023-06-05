@@ -101,6 +101,7 @@ terraform apply
 ```
 After creating all the resources go to AWS console, login as bastion-user and check:
 * Having connection to bastion instance via SSM, if so, paste the private key (.pem) inside ec2-user home directory. if not, check the policies attached to IAM role (EC2) and for the IAM user.
+![bastion-ec2-access](./images/bastion-ec2.png)
 ```
 #Inside bastion via SSM:
 sudo -i
@@ -112,4 +113,6 @@ chmod 700 centos-ec2.pem
 ```
 ssh -i centos-ec2.pem ec2-user@<private-ip-private-ec2>
 ```
+![bastion-ssm-access](./images/ssm-connect-bastion.png)
+
 
