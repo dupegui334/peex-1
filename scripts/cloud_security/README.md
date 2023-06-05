@@ -68,10 +68,14 @@ Bastion EC2 will have role for SSM will be attached. Also, security group inboun
 ### 2. Configure Bastion Host or a similar cloud appliance.
 Bastion EC2 will be on public subnet in VPC and it can reach hosts on private subnets of that VPC. 
 ### 3. Manage and control network traffic by firewall rules: Firewall rules are configured and prohibit access to the virtual server from anyone except the Bastion host
-    * For Bastion EC2 inbound rules for the security group will allow port TCP 22 and 443 only for IAM bastion-user's IP.
-    * For private EC2 inbound rules for the security group will allow TCP 22 for CIDR block of Bastion subnet.
+* For Bastion EC2 inbound rules for the security group will allow port TCP 22 and 443 only for IAM bastion-user's IP.
+* For private EC2 inbound rules for the security group will allow TCP 22 for CIDR block of Bastion subnet.
 ### 4. Configure access management tools (for example, user, roles, profiles): Access to the Bastion server is configured only for user nebo with limited access to the cloud resources, except for access to the virtual servers.
-    * IAM user will be created for bastion-user, it will have a policy attached to only access EC2 service.
+* IAM user will be created for bastion-user, it will have a policy attached to only access EC2 service.
+* To help you to create policy for IAM user you can use [AWS policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+![policy-generator](./images/AWS_Policy_Generator.png)
+* Once the user has been created, go to AWS console > IAM > Users > enable console login:
+![manage-access](./images/IAM_Management_Console.png)
 
 ## Content
 ### compute module:
@@ -95,8 +99,8 @@ cd ..
 terraform init
 terraform apply
 ```
-After creating all the resources go to AWS console and check:
-* Having connection to bastion instance via SSM, if so, paste the private key (.pem) inside ec2-user home directory. if not, check the IAM role.
+After creating all the resources go to AWS console, login as bastion-user and check:
+* Having connection to bastion instance via SSM, if so, paste the private key (.pem) inside ec2-user home directory. if not, check the policies attached to IAM role (EC2) and for the IAM user.
 ```
 #Inside bastion via SSM:
 sudo -i
