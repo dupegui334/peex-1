@@ -1,4 +1,5 @@
-# 2. Cloud compute:Provision virtual machine with predefined types and images
+# 2. Cloud compute:
+## Provision virtual machine with predefined types and images
 
 * a dedicated VPC is created with a public subnet
 * a security group restricting access to the created Amazon EC2 instance from your local workstation over SSH protocol
