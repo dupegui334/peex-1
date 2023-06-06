@@ -1,4 +1,4 @@
-# 2. Cloud network:
+# 3. Cloud network:
 ---
 ## 1. Configure traffic control at the Instance and Subnet Levels.
 

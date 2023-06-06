@@ -13,7 +13,7 @@ For steps 1-4 check this runbook from github on how to setup ssh keys for reposi
     * Create IAM role for SSM full access:
     ![IAM](./images/IAM.png)
     * Attach role to ec2 instance.
-    * Create security group to access ssh (inbound rules: TCP 443 or HTTPS) or left the default one.
+    * Create security group to access ssh (inbound rules: TCP 443 and 22) or left the default one.
     ![ec2](./images/ec2.png)
     ![SSM](./images/SSM.png)
 ### 6. Create non-admin users for connecting to the hosts:
