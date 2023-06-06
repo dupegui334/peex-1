@@ -15,7 +15,7 @@
 ### networking module:
 * **main.tf:** Terraform file dedicated to define network resources in AWS for the exercise such as: VPC, subnets, internet gateway and routing tables with their association.
 * **outputs.tf:** Terraform file dedicated to define the outputs of the module, this is important since the compute module will need to provision some of its resources based on resources of this module. *Example: EC2 (compute module) need a public subnet from networking module.*
-## parent directory:
+### parent directory:
 * **main.tf:** Terraform file dedicated to the 2 modules are called with their variables.
 * **provider.tf:** Terraform file dedicated to the providers we are going to need, in our case only AWS.
 * **backend.tf:** Terraform file dedicated to define where the backend of terraform will be, in this case in an S3 previously created.
