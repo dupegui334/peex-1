@@ -15,10 +15,10 @@ variable "private_subnet_cidr_block" {
 }
 
 variable "ami" {
-    default = "ami-0715c1897453cabd1"
+  default = "ami-0715c1897453cabd1"
 }
 
 variable "instance-type" {
-    default = "t2.micro"
+  default = "t2.micro"
 }
 

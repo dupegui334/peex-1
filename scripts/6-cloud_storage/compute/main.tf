@@ -22,7 +22,7 @@ resource "aws_s3_bucket_object_lock_configuration" "nebo-s3-lock" {
   bucket = aws_s3_bucket.nebo-s3.id
 
   rule {
-    default_retention {
+    default_retention { # The objects can only be deleted after 1 day
       mode = "COMPLIANCE"
       days = 1
     }
