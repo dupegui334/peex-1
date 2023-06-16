@@ -49,3 +49,11 @@ terraform apply
 ![user1](./images/user1.png)
 * Now login as user 2 and try to delete that same file: You shouldn't have permissions.
 ![user2](./images/user2.png)
+
+When trying to create replication accross region you'll get this error: 
+![error](./images/replication-error.png)
+this is caused for enabling object lock to the bucket, the retention period is 1 day, so you can wait for tomorrow and deactivate that option in terraform (comment aws_s3_bucket_object_lock_configuration. nebo-s3-lock resource ) or create another bucket to continue the exercise. After that, apply the new infrastructure, go to S3 nebo-bucket > MANAGEMENT > replication rules and now you'll see the replication rule with the role:
+![IAM](./images/IAM.png)
+It meas that if you upload a file in nebo-bucket, the same file will be replicated into nebo-bucket-replica automatically:
+![IAM](./images/nebo.png)
+![IAM](./images/nebo-replica.png)
