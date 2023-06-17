@@ -50,10 +50,16 @@ terraform apply
 * Now login as user 2 and try to delete that same file: You shouldn't have permissions.
 ![user2](./images/user2.png)
 
-When trying to create replication accross region you'll get this error: 
+* Note: When trying to create replication accross region you'll get this error: 
 ![error](./images/replication-error.png)
 this is caused for enabling object lock to the bucket, the retention period is 1 day, so you can wait for tomorrow and deactivate that option in terraform (comment aws_s3_bucket_object_lock_configuration. nebo-s3-lock resource ) or create another bucket to continue the exercise. After that, apply the new infrastructure, go to S3 nebo-bucket > MANAGEMENT > replication rules and now you'll see the replication rule with the role:
 ![IAM](./images/IAM.png)
-It meas that if you upload a file in nebo-bucket, the same file will be replicated into nebo-bucket-replica automatically:
+It means that if you upload a file in nebo-bucket, the same file will be replicated into nebo-bucket-replica automatically:
 ![IAM](./images/nebo.png)
 ![IAM](./images/nebo-replica.png)
+* Finally we'll add the VPC endpoint between EC2 on private subnet and S3 nebo bucket, but why? well, EC2 can reach the S3 service cause i doesn't have internet access. Why not using NAT gateway? it is expenssive and less secure than VPC enpoint (cost is free!).
+![endpoint](./images/endpoint.png)
+If there is no VPC endpoint, after creating all resources again, SSH to bastion host and the hop to private instance, configure aws credentials and ping google.com or run "aws s3 ls" and see if you have internet access (shouldn't have cause there is no NAT GW):
+![bastion](./images/ssh-bastion.png)
+Now if we add the VPC endpoint to the route table associated with the private subnet we can reach S3 and download their objects:
+![connection](./images/connection.png)

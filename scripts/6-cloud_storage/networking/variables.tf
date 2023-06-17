@@ -13,3 +13,8 @@ variable "private_subnet_cidr_block" {
   type = list(string)
   default = ["10.0.128.0/17"]
 }
+
+variable "aws-region" {
+  type = string
+  default = "us-east-1"
+}

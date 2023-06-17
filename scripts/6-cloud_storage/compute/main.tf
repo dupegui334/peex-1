@@ -36,6 +36,7 @@ resource "aws_s3_bucket" "nebo-s3-replica" {
     Name        = "My nebo bucket replica"
   }
 }
+## UNCOMMENT IF WANT TO DISALLOW S3 REPLICATION ACCROSS REGION
 
 # resource "aws_s3_bucket_object_lock_configuration" "nebo-s3-lock" {
 #   bucket = aws_s3_bucket.nebo-s3.id
@@ -48,7 +49,7 @@ resource "aws_s3_bucket" "nebo-s3-replica" {
 #   }
 # }
 
-data "aws_iam_policy_document" "assume_role" {
+data "aws_iam_policy_document" "assume_role" { #Document created so S3 service can assume the role
   statement {
     effect = "Allow"
 
@@ -61,12 +62,12 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-resource "aws_iam_role" "replication" { # Create role for the S3 buckets replication
+resource "aws_iam_role" "replication" { # Create role for the replication rule
   name               = "S3-allow-replication"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-data "aws_iam_policy_document" "replication" { #Define S3 policy for the 2 buckets
+data "aws_iam_policy_document" "replication" { #Document to define S3 policy for the replication rule
   statement {
     effect = "Allow"
 
@@ -211,6 +212,7 @@ resource "aws_instance" "ec2-priv" { # EC2 allocated on private subnet
   vpc_security_group_ids = [aws_security_group.vm-sg-priv.id]
   subnet_id = var.private_subnet[0] #Need to associate to subnet created so we can create SG in the VPC
   associate_public_ip_address = false
+  
 
   tags = {
     Name = "VM1-priv"
