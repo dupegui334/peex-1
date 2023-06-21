@@ -1,7 +1,6 @@
 # 6. Cloud storage
 ---
 ## 1. CLOUD: Provision of storage services.
-It is required to build a parent image, which is a base layer of your image that refers to the contents of the FROM directive in the Dockerfile.
 
 * Created S3 Bucket
 * Enabled Blocking Public Access to S3 bucket 
@@ -58,10 +57,10 @@ It means that if you upload a file in nebo-bucket, the same file will be replica
 ![IAM](./images/nebo.png)
 ![IAM](./images/nebo-replica.png)
 * Finally we'll add the VPC endpoint between EC2 on private subnet and S3 nebo bucket, but why? well, EC2 can reach the S3 service cause i doesn't have internet access. Why not using NAT gateway? it is expenssive and less secure than VPC enpoint (cost is free!).
-![endpoint](./images/endpoint.png)
-If there is no VPC endpoint, after creating all resources again, SSH to bastion host and the hop to private instance, configure aws credentials and ping google.com or run "aws s3 ls" and see if you have internet access (shouldn't have cause there is no NAT GW):
-![bastion](./images/ssh-bastion.png)
-Now if we add the VPC endpoint to the route table associated with the private subnet we can reach S3 and download their objects:
+![endpoint](./images/endpoint.png)  
+If there is no VPC endpoint, after creating all resources again, SSH to bastion host and the hop to private instance, configure aws credentials and ping google.com or run "aws s3 ls" and see if you have internet access (shouldn't have cause there is no NAT GW):  
+![bastion](./images/ssh-bastion.png)  
+Now if we add the VPC endpoint to the route table associated with the private subnet we can reach S3 and download their objects:  
 ![table](./images/table-cli.png)
-![connection](./images/connection.png)
+![connection](./images/connection.png)  
 **Before destroying all resources, both bucket needs to be emptied.**
