@@ -26,7 +26,10 @@ Alerts are available in CloudWatch dashboard for EC2
 S3 bucket event notifications set
 S3 metrics are configured in CloudWatch and alarms are configured for these metrics
 
-    - If you want to enable Cloudwatch alerts for EC2 go to the instance > actions > Monitor and troubleshoot > Manage Cloudwatch alarms:
-    - Create alarm based on resource monitored.
-    - Define notification using SNS subscription if wanted to send email or SMS.  
-    ![alarm](./images/alarm.png)
+- If you want to enable Cloudwatch alerts for EC2 go to the instance > actions > Monitor and troubleshoot > Manage Cloudwatch alarms:
+- Create alarm based on resource monitored.
+- Define notification using SNS subscription if wanted to send email or SMS.  
+![alarm](./images/alarm.png)
+
+- We can even create alarms for anomaly detections (using a band as a thershold) in Cloudwatch alarms:
+![alarm2](./images/alarm2.png)
