@@ -228,7 +228,7 @@ resource "aws_instance" "bastion" { # Bastion host to reach ec2 on private subne
   associate_public_ip_address = true
 
   tags = {
-    Name = "bastion-host" # Tag needed so IAM bastion user can reach that resource
+    Name = "bastion-host"
   }
 }
 
