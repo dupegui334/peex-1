@@ -7,16 +7,6 @@ resource "aws_efs_file_system" "nebo-efs" {
   }
 }
 
-resource "aws_efs_file_system" "nebo-replica" {
-  creation_token        = "nebo-replica"
-  source_efs_file_system_id = aws_efs_file_system.efs.id
-  encrypted             = true
-
-  tags = {
-    Name = "my-efs-replica"
-  }
-}
-
 resource "aws_efs_backup_policy" "policy" {
   file_system_id = aws_efs_file_system.nebo-efs.id
 
