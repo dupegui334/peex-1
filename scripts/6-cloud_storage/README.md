@@ -1,7 +1,6 @@
-# 6. Cloud storage
+# 6. Cloud storage: Provision of storage services.
 ---
-## 1. CLOUD: Provision of storage services.
-
+## AWS S3:
 * Created S3 Bucket
 * Enabled Blocking Public Access to S3 bucket 
 * Applied security measures:
@@ -64,3 +63,19 @@ Now if we add the VPC endpoint to the route table associated with the private su
 ![table](./images/table-cli.png)
 ![connection](./images/connection.png)  
 **Before destroying all resources, both bucket needs to be emptied.**
+
+---
+
+## AWS EFS:
+
+* Created EFS File System
+* Implemented EFS Security:
+* Enabled Data Encryption on created EFS Share
+* Identity and Access implementation:
+* Created IAM User, and delegated Minimum Access Rights to:
+    * Create EFS Share
+    * Mount EFS Share on EC2 instance
+* Implemented EFS Resilience
+* Configured EFS Share Replication
+* Performed Failover 
+* Deleted Replication
