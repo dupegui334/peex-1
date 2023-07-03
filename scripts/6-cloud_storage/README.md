@@ -28,7 +28,7 @@ Created S3 Gateway Endpoint.
 * **provider.tf:** Terraform file dedicated to the providers we are going to need, in our case only AWS.
 * **backend.tf:** Terraform file dedicated to define where the backend of terraform will be, in this case in an S3 previously created.
 
-
+To create resources, run:
 ```
 cd networking
 terraform init
@@ -79,3 +79,53 @@ Now if we add the VPC endpoint to the route table associated with the private su
 * Configured EFS Share Replication
 * Performed Failover 
 * Deleted Replication
+
+NOTE: when creating security groups for EC2, create inbound rule for port TCP 2049, that's the port used for EFS resource.
+To create resources, run:
+
+```
+cd networking
+terraform init
+cd ../compute
+terraform init
+cd ..
+terraform init
+terraform apply
+```
+After that, go to AWS console with user-1 and look for EFS resource. There you should see the nebo EFS created:
+![efs-aws](./images/efs_aws.png)
+
+Go to AWS nebo EC2 instance and SSH to it, then create a directory inside /mnt, that is going to be the directory where we are going to attach the EFS.
+```
+cd /mnt
+mkdir efs
+cd efs
+mkdir fs1
+```
+Then, install EFS library to mount the EFS:
+```
+sudo yum install -y amazon-efs-utils
+```
+Set up AWS credentials on EC2:
+```
+aws configure
+```
+
+Go back to EFS in AWS console, click on nebo EFS and select attach option, there select DNS and you'll see the commands that you need to execute to mount the EFS to the EC2 directory under "EFS mount helper":
+
+![efs-mount](./images/efs-mount.png)
+```
+sudo mount -t efs -o tls fs-0d003545f65dc4a0e:/ /mnt/efs/fs1
+```
+
+To verify the mount run mount command and look for the EFS folder:
+
+```
+$ mount | grep efs/fs1
+127.0.0.1:/ on /mnt/efs/fs2 type nfs4 (rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,port=20496,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+```
+
+To unmount run:
+```
+umount efs/fs1
+```
