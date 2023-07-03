@@ -40,16 +40,29 @@ resource "aws_iam_policy" "EFS_rw_policy" { # Policy for user with read/write ac
         Sid: "",
         Effect: "Allow",
         Action: [
-        "s3:GetObject",
-        "s3:ListBucket",
-        "s3:ListAllMyBuckets",
-        "s3:PutObject",
-        "s3:DeleteObject",
-        "s3:getBucketVersioning"
+          "elasticfilesystem:CreateFileSystem",
+          "elasticfilesystem:DescribeFileSystems",
+          "elasticfilesystem:CreateMountTarget",
+          "elasticfilesystem:DescribeMountTargets",
+          "elasticfilesystem:DescribeReplicationConfigurations",
+          "elasticfilesystem:DescribeLifecycleConfiguration",
+          "elasticfilesystem:DescribeAccessPoint",
+          "elasticfilesystem:DescribeMountTargetSecurityGroups"
         ],
         Resource: [
-          "arn:aws:s3:::*",
-          "arn:aws:s3:::/*"
+          "*"
+        ]
+      },{
+        Sid: "",
+        Effect: "Allow",
+        Action: [
+          "ec2:DescribeInstances",
+          "ec2:RunInstances",
+          "ec2:TerminateInstances",
+          "ec2:DescribeAvailabilityZones"
+        ],
+        Resource: [
+          "*"
         ]
       }
     ]
@@ -95,6 +108,14 @@ resource "aws_security_group" "sg-nebo-efs" {
     description = "https connection"
     from_port   = 443
     to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "EFS"
+    from_port   = 2049
+    to_port     = 2049
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
