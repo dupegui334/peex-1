@@ -129,3 +129,7 @@ To unmount run:
 ```
 umount efs/fs1
 ```
+
+To create replication go to AWS console under the created EFS menu, select replication option > create replication rule > select AWS region to create the replication:
+
+![replication-efs](./images/replication-efs.png)
